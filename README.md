@@ -1,88 +1,86 @@
 # Customer Segmentation for Wonderful Wines of the World 🍷
 
-This project was developed in the context of the "Data Mining 1" course and focuses on clustering-based customer segmentation for the wine retailer **Wonderful Wines of the World (WWW)**. Using unsupervised learning techniques, the goal was to help WWW transition from mass marketing to personalized strategies by identifying distinct customer groups based on **value** and **buying behavior**.
+This project was developed in the context of an academic course and focuses on clustering-based customer segmentation for the wine retailer **Wonderful Wines of the World (WWW)**. Using unsupervised learning techniques, the goal was to help WWW transition from mass marketing to personalized strategies by identifying distinct customer groups based on **value** and **buying behavior**.
 
 ---
 
 ## 🧠 Project Objectives
 
-1. **Engagement & Value Segmentation**:  
-   Segment customers based on engagement and value (recency, frequency, monetary, LTV, etc.) to identify loyal, high-value, and at-risk customers.
+1. **Engagement & Value Segmentation**  
+   Identify distinct groups of customers based on their purchasing frequency, recency, monetary value, and lifetime value. The goal is to highlight loyal customers, high-spenders, and at-risk clients.
 
-2. **Product Preference Segmentation**:  
-   Identify customer segments based on wine type preferences (dry red, sweet white, dessert, etc.).
+2. **Product Preference Segmentation**  
+   Analyze customer preferences based on wine types (e.g., dry red, sweet white, dessert wines) to uncover behavioral clusters related to taste and buying patterns.
 
-3. **Strategy Development**:  
-   Combine both segmentations to create actionable marketing recommendations for each group.
+3. **Strategic Alignment**  
+   Combine the two segmentations to create a practical framework for **targeted marketing strategies**, cross-selling, and loyalty programs.
 
 ---
 
-## 📊 Dataset Overview
+## 📊 Dataset Summary
 
-We worked with a dataset of **10,000 active customers**, including demographic, behavioral, and transactional variables:
+The dataset includes **10,000 active customers** who made at least one purchase in the last 18 months. Each customer is described by demographic, behavioral, and transactional variables:
 
-| Variable | Description |
-|----------|-------------|
-| `AGE`, `INCOME`, `EDUCATION` | Demographics |
-| `RECENCY`, `FREQ`, `MONETARY` | RFM values |
-| `LTV` | Lifetime value |
-| `PERDEAL` | Discount sensitivity |
-| `WEBPURCH`, `WEBVISIT` | Digital behavior |
-| `DRYRED`, `SWEETRED`, `DRYWH`, etc. | Wine type preferences |
-| `ACCESS` | Wine accessory purchases |
+| Type         | Variables Included                                                   |
+|--------------|-----------------------------------------------------------------------|
+| Demographics | `AGE`, `EDUCATION`, `INCOME`, `KIDHOME`, `TEENHOME`                  |
+| Engagement   | `RECENCY`, `FREQ`, `MONETARY`, `LTV`, `DAYSWUS`                      |
+| Discounts    | `PERDEAL`                                                             |
+| Channels     | `WEBPURCH`, `WEBVISIT`, `ACCESS`                                     |
+| Preferences  | `% of wine types purchased: DRYRED, SWEETRED, DRYWH, SWEETWH, etc.`  |
 
 ---
 
 ## ⚙️ Methodology
 
-### 1. Data Cleaning & Preprocessing
-- Handled missing values and outliers
-- Normalized variables using Min-Max scaling
-- Selected relevant features per segmentation objective
+### 🧼 Preprocessing
+- Outlier detection and removal
+- Imputation of missing values
+- Feature selection tailored to each segmentation goal
+- Normalization using Min-Max scaling
 
-### 2. Clustering Algorithms Used
+### 📈 Clustering Techniques
 - **K-Means Clustering**
-- **Hierarchical Clustering**
-- **DBSCAN** (tested but not selected in final solution)
+- **Agglomerative Hierarchical Clustering**
 
-### 3. Evaluation & Validation
-- Chose optimal number of clusters using Elbow Method, Silhouette Score, and Dendrograms
-- Visualized clusters using PCA and t-SNE projections
+> We also tested DBSCAN, but it was not selected due to poor cluster definition on this dataset.
+
+### 🔍 Model Evaluation
+- Elbow Method  
+- Silhouette Score  
+- Dendrogram inspection (for hierarchical clustering)  
+- Dimensionality reduction with PCA for visualization
 
 ---
 
 ## 🔍 Key Insights
 
-### Engagement & Value Segmentation:
-- Identified 4 distinct groups:  
-  - **High Value, High Engagement**
-  - **New but Promising**
-  - **Loyal but Low-Spending**
-  - **At-Risk / Dormant**
+### 1. Engagement & Value Clustering
+Segmented the customer base into groups such as:
+- **High Value Loyalists**: Frequent, high spenders with recent activity  
+- **Dormant Clients**: Long inactive, low frequency  
+- **Newcomers**: Recent activity but lower spending  
+- **Discount Seekers**: High % of purchases on deals
 
-### Buying Behavior Segmentation:
-- Segmented customers into wine preference profiles:  
-  - **Red Wine Lovers**  
-  - **Sweet Wine Fans**  
-  - **Experimental / Exotic Tastes**  
-  - **Balanced Mix Consumers**
+### 2. Wine Preference Clustering
+Found consistent consumer types:
+- **Red Wine Enthusiasts**  
+- **Sweet Wine Lovers**  
+- **Experimental Tasters**  
+- **Balanced Drinkers**
 
-### Combined Strategy Matrix:
-Mapped behavior segments with value segments to design targeted marketing actions, such as:
-- **Upselling premium products to high-value red wine lovers**
-- **Retention campaigns for at-risk dessert wine fans**
-- **Cross-sell accessories to digital-savvy mixed consumers**
-
+### 3. Combined Customer Matrix
+By cross-referencing both segmentations, we proposed **customized marketing plans**:
+- Upselling accessories to digital-savvy red wine fans  
+- Loyalty incentives for high-value sweet wine buyers  
+- Reactivation campaigns for dormant but once-profitable customers
 ---
 
 ## 📦 Tools & Libraries
 
-- Python 3.10
 - Google Colab
-- pandas, numpy
-- matplotlib, seaborn, plotly
-- scikit-learn (KMeans, DBSCAN, PCA, etc.)
-- scipy (for hierarchical clustering)
-- seaborn, plotly for visualizations
-
+- pandas, numpy, matplotlib, seaborn
+- scikit-learn (`KMeans`, `AgglomerativeClustering`, `PCA`, `MinMaxScaler`)
+- scipy (`linkage`, `dendrogram`)
+- plotly for interactive visualizations
 ---
